@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 
 class BottomSheetTextField extends StatelessWidget {
   final String hintMsg;
-  const BottomSheetTextField({super.key, required this.hintMsg});
+  final TextEditingController controller;
+  const BottomSheetTextField({
+    super.key,
+    required this.hintMsg,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       cursorColor: AppColors.lightBlue,
       style: TextStyle(color: AppColors.gold, fontSize: 16, fontWeight: .w400),
       decoration: InputDecoration(

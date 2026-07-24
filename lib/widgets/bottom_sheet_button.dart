@@ -2,12 +2,13 @@ import 'package:contact/utils/conestants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomSheetButton extends StatelessWidget {
-  const BottomSheetButton({super.key});
+  final VoidCallback onPressed;
+  const BottomSheetButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.all(Radius.circular(16)),

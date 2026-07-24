@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:contact/models/contact.dart';
 import 'package:contact/utils/conestants/app_colors.dart';
 import 'package:contact/widgets/bottom_sheet_button.dart';
 import 'package:contact/widgets/bottom_sheet_text_field.dart';
@@ -7,13 +8,25 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 
 class AddButton extends StatefulWidget {
-  const AddButton({super.key});
+  final void Function(Contact contact) onContactAdded;
+  const AddButton({super.key, required this.onContactAdded});
 
   @override
   State<AddButton> createState() => _AddButtonState();
 }
 
 class _AddButtonState extends State<AddButton> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
+
   Future<void> _pickImage(
     void Function(void Function()) setSheetState,
     File? Function() getImage,
@@ -109,12 +122,38 @@ class _AddButtonState extends State<AddButton> {
                           Column(
                             spacing: 9,
                             children: [
-                              BottomSheetTextField(hintMsg: "Enter user name"),
-                              BottomSheetTextField(hintMsg: "Enter user email"),
-                              BottomSheetTextField(hintMsg: "Enter user phone"),
+                              BottomSheetTextField(
+                                hintMsg: "Enter user name",
+                                controller: _nameController,
+                              ),
+                              BottomSheetTextField(
+                                hintMsg: "Enter user email",
+                                controller: _emailController,
+                              ),
+                              BottomSheetTextField(
+                                hintMsg: "Enter user phone",
+                                controller: _phoneController,
+                              ),
                             ],
                           ),
-                          BottomSheetButton(),
+                          BottomSheetButton(
+                            onPressed: () {
+                              final contact = Contact(
+                                name: _nameController.text,
+                                email: _emailController.text,
+                                phone: _phoneController.text,
+                                image: pickedImage,
+                              );
+
+                              widget.onContactAdded(contact);
+
+                              _nameController.clear();
+                              _emailController.clear();
+                              _phoneController.clear();
+
+                              Navigator.pop(context);
+                            },
+                          ),
                         ],
                       ),
                     ),
