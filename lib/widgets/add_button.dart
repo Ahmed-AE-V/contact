@@ -117,6 +117,53 @@ class _AddButtonState extends State<AddButton> {
                                         ),
                                 ),
                               ),
+                              SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      _nameController.text.isEmpty
+                                          ? "User Name"
+                                          : _nameController.text,
+                                      style: TextStyle(
+                                        color: AppColors.gold,
+                                        fontSize: 16,
+                                        fontWeight: .w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                      child: Divider(color: AppColors.gold),
+                                    ),
+                                    // Spacer(),
+                                    Text(
+                                      _emailController.text.isEmpty
+                                          ? "example@email.com"
+                                          : _emailController.text,
+                                      style: TextStyle(
+                                        color: AppColors.gold,
+                                        fontSize: 16,
+                                        fontWeight: .w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                      child: Divider(color: AppColors.gold),
+                                    ),
+                                    Text(
+                                      _phoneController.text.isEmpty
+                                          ? "+200000000000"
+                                          : _phoneController.text,
+                                      style: TextStyle(
+                                        color: AppColors.gold,
+                                        fontSize: 16,
+                                        fontWeight: .w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                           Column(
@@ -164,8 +211,8 @@ class _AddButtonState extends State<AddButton> {
           );
         },
         backgroundColor: AppColors.gold,
-        isExtended: false,
-        child: const Icon(Icons.add),
+
+        child: Icon(Icons.add),
       ),
     );
   }
