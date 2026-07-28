@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 16,
-                childAspectRatio: .65,
+                childAspectRatio: .61,
               ),
               itemCount: contacts.length,
               itemBuilder: (context, index) {
